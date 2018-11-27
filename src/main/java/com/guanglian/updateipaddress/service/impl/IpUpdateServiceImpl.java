@@ -60,7 +60,7 @@ public class IpUpdateServiceImpl implements IpUpdateService {
             String url = "http://ip.taobao.com/service/getIpInfo.php" + "?ip=" + ipAddress.getIpstart() + ".0";
             TaoBaoIPWithArea area = findArea(url, id);
             int count = 0;
-            //判断是否获取到area，没有就重试三次
+            //判断是否获取到area，一直重复获取
             while (!flag) {
                 Thread.sleep(6000);
                 area = findArea(url, id);

@@ -22,10 +22,10 @@ public class IpUpdateServiceImplTest extends UpdateipaddressApplicationTests {
 
     @Test
     public void updateIp() throws InterruptedException {
-        int i = 0;
+        int i = 576;
         while (i < 601211) {
             ipUpdateService.updateIp(i);
-            Thread.sleep(6000);
+            Thread.sleep(2000);
             i++;
         }
     }

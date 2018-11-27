@@ -10,6 +10,8 @@ package com.guanglian.updateipaddress.web.controller;
 import com.guanglian.updateipaddress.service.IpUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * <p></p>
@@ -27,5 +29,17 @@ public class IpdateController {
 
     @Autowired
     private IpUpdateService updateService;
+
+    @GetMapping("/update")
+    @ResponseBody
+    public String update() throws Exception{
+        int i = 576;
+        while (i < 601211) {
+            updateService.updateIp(i);
+            Thread.sleep(2000);
+            i++;
+        }
+        return "正在更新";
+    }
 
 }
