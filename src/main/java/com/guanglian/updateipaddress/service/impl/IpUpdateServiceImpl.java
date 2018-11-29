@@ -105,11 +105,15 @@ public class IpUpdateServiceImpl implements IpUpdateService {
                     //市id
                     int cityId = Integer.parseInt(area.getData().getCity_id());
                     //更新省市及其ID
-                    ipAddress.setProvincename(regionRepository.findByRegionId(regionId));
-                    ipAddress.setProvinceid(new BigDecimal(regionId));
-                    ipAddress.setCityname(regionRepository.findByRegionId(cityId));
-                    ipAddress.setCityid(new BigDecimal(cityId));
-                    ipAddressRepository.update(ipAddress);
+                    try {
+                        ipAddress.setProvincename(regionRepository.findByRegionId(regionId));
+                        ipAddress.setProvinceid(new BigDecimal(regionId));
+                        ipAddress.setCityname(regionRepository.findByRegionId(cityId));
+                        ipAddress.setCityid(new BigDecimal(cityId));
+                        ipAddressRepository.update(ipAddress);
+                    } catch (Exception e) {
+                        log.error("区划表中没有查询到此区域");
+                    }
 
                     log.info("市更新成功，id:" + ipAddress.getId());
                 }
