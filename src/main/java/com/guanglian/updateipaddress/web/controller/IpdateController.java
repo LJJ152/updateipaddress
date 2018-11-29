@@ -11,6 +11,7 @@ import com.guanglian.updateipaddress.service.IpUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -30,14 +31,15 @@ public class IpdateController {
     @Autowired
     private IpUpdateService updateService;
 
-    @GetMapping("/update")
+    @GetMapping("/update/{id}")
     @ResponseBody
-    public String update() throws Exception{
-        int i = 576;
-        while (i < 601211) {
+    public String update(@PathVariable Integer id) throws Exception{
+        //最后一位601211
+        int i = id;
+        while (i > 0) {
             updateService.updateIp(i);
-            Thread.sleep(2000);
-            i++;
+            Thread.sleep(1000);
+            i--;
         }
         return "正在更新";
     }

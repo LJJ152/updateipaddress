@@ -62,7 +62,7 @@ public class IpUpdateServiceImpl implements IpUpdateService {
             int count = 0;
             //判断是否获取到area，一直重复获取
             while (!flag) {
-                Thread.sleep(6000);
+                Thread.sleep(2000);
                 area = findArea(url, id);
                 if (area != null){
                     flag = !flag;
@@ -94,7 +94,7 @@ public class IpUpdateServiceImpl implements IpUpdateService {
             }*/
 
             //如果市不一样 执行
-            if (ipAddress.getCityname() != null) {
+            if (!area.getData().getCity().equalsIgnoreCase("XX") && ipAddress.getCityname() != null ) {
                 String city = area.getData().getCity();
                 String city2 = city.substring(0, 2);
                 String cityname = ipAddress.getCityname();
