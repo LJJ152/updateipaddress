@@ -94,7 +94,7 @@ public class IpUpdateServiceImpl implements IpUpdateService {
             }*/
 
             //如果市不一样 执行
-            if (!area.getData().getCity().equalsIgnoreCase("XX") && ipAddress.getCityname() != null ) {
+            if (!area.getData().getCity().equalsIgnoreCase("XX") && ipAddress.getCityname() != null && !ipAddress.getCityname().equals("") ) {
                 String city = area.getData().getCity();
                 String city2 = city.substring(0, 2);
                 String cityname = ipAddress.getCityname();
